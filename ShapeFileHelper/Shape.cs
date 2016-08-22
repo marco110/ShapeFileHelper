@@ -2,7 +2,7 @@
 
 namespace ShapeFileHelper
 {
-    public class Shape
+    public abstract class Shape
     {
         public List<Point> points = new List<Point>();
         public BoundingBox newBoundingBox;        

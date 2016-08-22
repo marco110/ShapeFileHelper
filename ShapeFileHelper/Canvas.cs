@@ -2,7 +2,7 @@
 
 namespace ShapeFileHelper
 {
-    public class Canvas
+    public abstract class Canvas
     {
         private int width, height;
 

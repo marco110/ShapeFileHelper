@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ShapeFileHelper
 {
-    public class ShapeFile
+    public abstract class ShapeFile
     {
         private string filePath, fileName, fileLength;
 
