@@ -51,7 +51,6 @@ namespace ShapeFileHelper
                     break;
             }
             return boundingBox;
-        }
-
+        }       
     }
 }

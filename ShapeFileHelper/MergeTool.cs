@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ShapeFileHelper
 {
-    public class MergeTool
+    public static class MergeTool
     {
-        public void Merge(string filePath1,string filePath2) { }
+        public static void Merge(string filePath1, string filePath2) { }
     }
 }

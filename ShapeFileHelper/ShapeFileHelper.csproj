@@ -42,7 +42,7 @@
     <Compile Include="BitmapCanvas.cs" />
     <Compile Include="BoundingBox.cs" />
     <Compile Include="Canvas.cs" />
-    <Compile Include="Convertor.cs" />
+    <Compile Include="CoordinateConvertor.cs" />
     <Compile Include="IndexFile.cs" />
     <Compile Include="MainFile.cs" />
     <Compile Include="MergeTool.cs" />

@@ -34,7 +34,7 @@ namespace ShapeFileHelper
             foreach (Point p in points)
             {
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawEllipse(new Pen(Style.PenColor, 1), (float)p.X, (float)p.Y, 3, 3);
+                g.DrawEllipse(new Pen(Style.PenColor, Style.PenWidth), (float)p.X, (float)p.Y, 3, 3);                
             }
         }
 
@@ -51,7 +51,7 @@ namespace ShapeFileHelper
                     newPoint[j].Y = (float)(polylines[i].points[j].Y);
                 }
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawLines(new Pen(Style.PenColor, 1), newPoint);
+                g.DrawLines(new Pen(Style.PenColor, Style.PenWidth), newPoint);
             }
         }
 
@@ -68,7 +68,7 @@ namespace ShapeFileHelper
                     newPoint[j].Y = (float)(polygons[i].points[j].Y);
                 }
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawPolygon(new Pen(Style.PenColor, 1), newPoint);
+                g.DrawPolygon(new Pen(Style.PenColor, Style.PenWidth), newPoint);
             }
         }
 

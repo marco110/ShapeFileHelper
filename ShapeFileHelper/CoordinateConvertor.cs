@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShapeFileHelper
 {
-    public class Convertor
+    public static class CoordinateConvertor
     {
         public static List<Point> ConvertPointsToScreen(List<Point> points, BitmapCanvas canvas)
         {

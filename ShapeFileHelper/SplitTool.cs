@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ShapeFileHelper
 {
-    public class SplitTool
+    public static class SplitTool
     {
-        public List<List<Shape>> SplitShapes(BoundingBox boundingBox, List<Shape> shapes, Canvas canvas)
+        public static List<List<Shape>> SplitShapes(BoundingBox boundingBox, List<Shape> shapes, Canvas canvas)
         {
             List<List<Shape>> newShapes = new List<List<Shape>>();
             if (shapes.Count != 0)
@@ -17,10 +17,7 @@ namespace ShapeFileHelper
                         foreach (var point in shapes)
                         {
                             Point p = point as Point;
-                            if (p != null)
-                            {
-                                points.Add(p);
-                            }
+                            points.Add(p);
                         }
                         var pointList = SplitPoints(boundingBox, points, canvas);
                         List<Shape> ps = new List<Shape>();
@@ -41,10 +38,7 @@ namespace ShapeFileHelper
                         foreach (var polyline in shapes)
                         {
                             Polyline p = polyline as Polyline;
-                            if (p != null)
-                            {
-                                polylines.Add(p);
-                            }
+                            polylines.Add(p);
                         }
                         var polylineList = SplitPolylines(boundingBox, polylines, canvas);
                         List<Shape> ps2 = new List<Shape>();
@@ -65,10 +59,8 @@ namespace ShapeFileHelper
                         foreach (var polygon in shapes)
                         {
                             Polygon p = polygon as Polygon;
-                            if (p != null)
-                            {
-                                polygons.Add(p);
-                            }
+                            polygons.Add(p);
+
                         }
                         var polygonList = SplitPolygons(boundingBox, polygons, canvas);
                         List<Shape> ps4 = new List<Shape>();
@@ -89,7 +81,7 @@ namespace ShapeFileHelper
             return newShapes;
         }
 
-        public List<List<Point>> SplitPoints(BoundingBox boundingBox, List<Point> pointList, Canvas canvas)
+        public static List<List<Point>> SplitPoints(BoundingBox boundingBox, List<Point> pointList, Canvas canvas)
         {
             List<List<Point>> points = new List<List<Point>>();
             List<Point> inBox = new List<Point>();
@@ -113,7 +105,7 @@ namespace ShapeFileHelper
             return points;
         }
 
-        public List<List<Polyline>> SplitPolylines(BoundingBox boundingBox, List<Polyline> polylineList, Canvas canvas)
+        public static List<List<Polyline>> SplitPolylines(BoundingBox boundingBox, List<Polyline> polylineList, Canvas canvas)
         {
             List<List<Polyline>> polylines = new List<List<Polyline>>();
             List<Polyline> inBox = new List<Polyline>();
@@ -138,7 +130,7 @@ namespace ShapeFileHelper
             return polylines;
         }
 
-        public List<List<Polygon>> SplitPolygons(BoundingBox boundingBox, List<Polygon> polygonList, Canvas canvas)
+        public static List<List<Polygon>> SplitPolygons(BoundingBox boundingBox, List<Polygon> polygonList, Canvas canvas)
         {
             List<List<Polygon>> polygons = new List<List<Polygon>>();
             List<Polygon> inBox = new List<Polygon>();
