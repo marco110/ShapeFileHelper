@@ -8,7 +8,7 @@ namespace ShapeFileHelper
         public BoundingBox newBoundingBox;        
         public ShapeType ShapeType;
 
-        public static BoundingBox GetShapesBoundingBox(List<Shape> shapes)
+        /*public static BoundingBox GetShapesBoundingBox(List<Shape> shapes)
         {
             BoundingBox boundingBox = new BoundingBox(0, 0, 0, 0);
             switch (shapes[0].ShapeType)
@@ -51,6 +51,6 @@ namespace ShapeFileHelper
                     break;
             }
             return boundingBox;
-        }       
+        }      */ 
     }
 }

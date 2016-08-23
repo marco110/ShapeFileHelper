@@ -11,13 +11,13 @@ namespace ShapeFileHelper
     {
         public static List<Point> ConvertPointsToScreen(List<Point> points, BitmapCanvas canvas)
         {
-            List<Point> newPoints = new List<Point>();            
+            List<Point> newPoints = new List<Point>();
             BoundingBox boundingBox = Point.GetPointsBoundingBox(points);
             var bitmap = canvas.GetBitmap();
             foreach (Point p in points)
             {
-                double X = (p.X - boundingBox.XMin) * (bitmap.Width  / (boundingBox.XMax - boundingBox.XMin));
-                double Y = (p.Y - boundingBox.YMin) * (bitmap.Height  / (boundingBox.YMax - boundingBox.YMin));
+                double X = (p.X - boundingBox.XMin) * (bitmap.Width / (boundingBox.XMax - boundingBox.XMin));
+                double Y = (p.Y - boundingBox.YMin) * (bitmap.Height / (boundingBox.YMax - boundingBox.YMin));
                 Point point = new Point(X, Y);
                 newPoints.Add(point);
             }
@@ -26,20 +26,20 @@ namespace ShapeFileHelper
 
         public static List<Polyline> ConvertPolylinesToScreen(List<Polyline> polylines, BitmapCanvas canvas)
         {
-            List<Polyline> newPolylines = new List<Polyline>();            
+            List<Polyline> newPolylines = new List<Polyline>();
             var bitmap = canvas.GetBitmap();
             BoundingBox boundingBox = Polyline.GetPolylinesBoundingBox(polylines);
             for (int i = 0; i < polylines.Count; i++)
             {
                 List<Point> newPoints = new List<Point>();
                 foreach (Point p in polylines[i].points)
-                    {
-                        
-                        double X = (float)(p.X - boundingBox.XMin) * (bitmap.Width / (boundingBox.XMax - boundingBox.XMin));
-                        double Y = (float)(p.Y - boundingBox.YMin) * (bitmap.Height / (boundingBox.YMax - boundingBox.YMin));
-                        Point point = new Point(X, Y);
-                        newPoints.Add(point);
-                    }
+                {
+
+                    double X = (float)(p.X - boundingBox.XMin) * (bitmap.Width / (boundingBox.XMax - boundingBox.XMin));
+                    double Y = (float)(p.Y - boundingBox.YMin) * (bitmap.Height / (boundingBox.YMax - boundingBox.YMin));
+                    Point point = new Point(X, Y);
+                    newPoints.Add(point);
+                }
                 Polyline polyline = new Polyline(newPoints);
                 newPolylines.Add(polyline);
             }
@@ -78,10 +78,7 @@ namespace ShapeFileHelper
                     foreach (var point in shapes)
                     {
                         Point p = point as Point;
-                        if (p != null)
-                        {
-                            points.Add(p);
-                        }
+                        points.Add(p);
                     }
                     var pointList = ConvertPointsToScreen(points, canvas);
                     foreach (var point in pointList)
@@ -94,10 +91,7 @@ namespace ShapeFileHelper
                     foreach (var polyline in shapes)
                     {
                         Polyline p = polyline as Polyline;
-                        if (p != null)
-                        {
-                            polylines.Add(p);
-                        }
+                        polylines.Add(p);
                     }
                     var polylineList = ConvertPolylinesToScreen(polylines, canvas);
                     foreach (var polyline in polylineList)
@@ -110,10 +104,7 @@ namespace ShapeFileHelper
                     foreach (var polygon in shapes)
                     {
                         Polygon p = polygon as Polygon;
-                        if (p != null)
-                        {
-                            polygons.Add(p);
-                        }
+                        polygons.Add(p);
                     }
                     var polygonList = ConvertPolygonsToScreen(polygons, canvas);
                     foreach (var polygon in polygonList)
@@ -121,7 +112,6 @@ namespace ShapeFileHelper
                         newShapes.Add(polygon);
                     }
                     break;
-
             }
             return newShapes;
         }

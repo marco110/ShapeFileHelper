@@ -4,19 +4,10 @@ namespace ShapeFileHelper
 {
     public abstract class Canvas
     {
-        private int width, height;
+      
+        public int Width { get; set; }
 
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-        
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
+        public int Height { get; set; }
 
         public Canvas() { }
 

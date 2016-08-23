@@ -6,28 +6,15 @@ using System.Collections.Generic;
 namespace ShapeFileHelper
 {
     public class MainFile
-    {
-        private string fileName, filePath;
-        private int fileLength;
+    {        
         List<Shape> shapes = new List<Shape>();
 
-        public string FilePath
-        {
-            get { return filePath; }
-            set { filePath = value; }
-        }
+        public string FilePath { get; set; }
 
-        public string FileName
-        {
-            get { return fileName; }
-            set { fileName = value; }
-        }
+        public string FileName { get; set; }
+
+        public int FileLength { get; set; }
         
-        public int FileLength
-        {
-            get { return fileLength; }
-            set { fileLength = value; }
-        }
         public MainFile(string fileName)
         {
             this.FileName = fileName;
@@ -163,6 +150,8 @@ namespace ShapeFileHelper
             return shapes;
         }
 
-        public void Write() { }
+        public void WriteMainFile() { }
+
+        public void SaveMainFile() { }
     }
 }

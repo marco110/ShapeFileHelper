@@ -6,26 +6,12 @@ namespace ShapeFileHelper
 {
     public abstract class ShapeFile
     {
-        private string filePath, fileName, fileLength;
+        public string FileLength { get; set; }
 
-        public string FileLength
-        {
-            get { return fileLength; }
-            set { fileLength = value; }
-        }
+        public string FileName { get; set; }
 
-        public string FileName
-        {
-            get { return fileName; }
-            set { fileName = value; }
-        }
-
-        public string FilePath
-        {
-            get { return filePath; }
-            set { filePath = value; }
-        }
-
+        public string FilePath { get; set; }
+         
         public ShapeFile(string filePath)
         {
             this.FilePath = filePath;
@@ -35,6 +21,6 @@ namespace ShapeFileHelper
 
         public void WriteShapeFile() { }
 
-        public void SaveShapeFile(Shape shape) { }
+        public void SaveShapeFile() { }
     }
 }

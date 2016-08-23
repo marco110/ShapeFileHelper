@@ -2,30 +2,22 @@
 namespace ShapeFileHelper
 {
     public class IndexFile
-    {
-        private string filePath, fileName;
-        private int fileLength;
+    {       
+        public int FileLength { get; set; }
+       
+        public string FileName { get; set; }
 
-        public int FileLength
+        public string FilePath { get; set; }
+       
+        public IndexFile(string fileName)
         {
-            get { return fileLength; }
-            set { fileLength = value; }
+            this.FileName = fileName;
         }
 
-        public string FileName
-        {
-            get { return fileName; }
-            set { fileName = value; }
-        }
+        public void WriteIndexFile() { }
 
-        public string FilePath
-        {
-            get { return filePath; }
-            set { filePath = value; }
-        }
+        public void ReadIndexFile() { }
 
-        public void Write() { }
-
-        public void Read(string filePath) { }
+        public void SaveIndexFile() { }
     }
 }

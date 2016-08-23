@@ -20,18 +20,18 @@ namespace ShapeFileHelper
                             points.Add(p);
                         }
                         var pointList = SplitPoints(boundingBox, points, canvas);
-                        List<Shape> ps = new List<Shape>();
+                        List<Shape> inBoxPoints = new List<Shape>();
                         foreach (var point in pointList[0])
                         {
-                            ps.Add(point);
+                            inBoxPoints.Add(point);
                         }
-                        List<Shape> ps1 = new List<Shape>();
+                        List<Shape> outBoxPoints = new List<Shape>();
                         foreach (var point in pointList[1])
                         {
-                            ps1.Add(point);
+                            outBoxPoints.Add(point);
                         }
-                        newShapes.Add(ps);
-                        newShapes.Add(ps1);
+                        newShapes.Add(inBoxPoints);
+                        newShapes.Add(outBoxPoints);
                         break;
                     case ShapeType.Polyline:
                         List<Polyline> polylines = new List<Polyline>();
@@ -41,18 +41,18 @@ namespace ShapeFileHelper
                             polylines.Add(p);
                         }
                         var polylineList = SplitPolylines(boundingBox, polylines, canvas);
-                        List<Shape> ps2 = new List<Shape>();
+                        List<Shape> inBoxPolyline = new List<Shape>();
                         foreach (var point in polylineList[0])
                         {
-                            ps2.Add(point);
+                            inBoxPolyline.Add(point);
                         }
-                        List<Shape> ps3 = new List<Shape>();
+                        List<Shape> outBoxPolyline = new List<Shape>();
                         foreach (var point in polylineList[1])
                         {
-                            ps3.Add(point);
+                            outBoxPolyline.Add(point);
                         }
-                        newShapes.Add(ps2);
-                        newShapes.Add(ps3);
+                        newShapes.Add(inBoxPolyline);
+                        newShapes.Add(outBoxPolyline);
                         break;
                     case ShapeType.Polygon:
                         List<Polygon> polygons = new List<Polygon>();
@@ -63,18 +63,18 @@ namespace ShapeFileHelper
 
                         }
                         var polygonList = SplitPolygons(boundingBox, polygons, canvas);
-                        List<Shape> ps4 = new List<Shape>();
+                        List<Shape> inBoxPolygon = new List<Shape>();
                         foreach (var point in polygonList[0])
                         {
-                            ps4.Add(point);
+                            inBoxPolygon.Add(point);
                         }
-                        List<Shape> ps5 = new List<Shape>();
+                        List<Shape> outBoxPolygon = new List<Shape>();
                         foreach (var point in polygonList[1])
                         {
-                            ps5.Add(point);
+                            outBoxPolygon.Add(point);
                         }
-                        newShapes.Add(ps4);
-                        newShapes.Add(ps5);
+                        newShapes.Add(inBoxPolygon);
+                        newShapes.Add(outBoxPolygon);
                         break;
                 }
             }

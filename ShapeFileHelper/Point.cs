@@ -3,21 +3,11 @@ namespace ShapeFileHelper
 {
     public class Point : Shape
     {
-        private double x;
-        private double y;
-
-        public double X
-        {
-            get { return x; }
-            set { x = value; }
-        }
         
-        public double Y
-        {
-            get { return y; }
-            set { y = value; }
-        }
+        public double X { get; set; }
 
+        public double Y { get; set; }
+        
         public Point(double X,double Y)
         {
             this.X = X;

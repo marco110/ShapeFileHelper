@@ -9,14 +9,8 @@ namespace ShapeFileHelper
 {
     public class BitmapCanvas:Canvas
     {
-        private Bitmap bitmap;
-
-        public Bitmap Bitmap
-        {
-            get { return bitmap; }
-            set { bitmap = value; }
-        }
-        
+        public Bitmap Bitmap { get; set; }
+                
         public BitmapCanvas(int width,int height)
         {
             this.Height = height;
