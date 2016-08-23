@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace ShapeFileHelper
 {
     public class MainFile
-    {        
+    {
         List<Shape> shapes = new List<Shape>();
 
         public string FilePath { get; set; }
@@ -14,13 +14,13 @@ namespace ShapeFileHelper
         public string FileName { get; set; }
 
         public int FileLength { get; set; }
-        
+
         public MainFile(string fileName)
         {
             this.FileName = fileName;
         }
-      
-        public List<Shape> ReadShapes() 
+
+        public List<Shape> ReadShapes()
         {
             using (FileStream File = new FileStream(FileName, FileMode.Open))
             {
@@ -44,7 +44,7 @@ namespace ShapeFileHelper
             return shapes;
         }
 
-        public List<Shape> ReadPoints() 
+        public List<Shape> ReadPoints()
         {
             shapes.Clear();
             using (FileStream File = new FileStream(FileName, FileMode.Open))
@@ -53,12 +53,12 @@ namespace ShapeFileHelper
                 br.ReadBytes(100);
                 shapes.Clear();
                 while (br.PeekChar() != -1)
-                {                    
+                {
                     br.ReadBytes(8);
                     br.ReadInt32();
                     double X = br.ReadDouble();
                     double Y = br.ReadDouble();
-                    Point point = new Point(X,Y);
+                    Point point = new Point(X, Y);
                     shapes.Add(point);
                 }
                 br.Close();
@@ -66,7 +66,7 @@ namespace ShapeFileHelper
             return shapes;
         }
 
-        public List<Shape> ReadPolylines() 
+        public List<Shape> ReadPolylines()
         {
             using (FileStream File = new FileStream(FileName, FileMode.Open))
             {
@@ -74,37 +74,48 @@ namespace ShapeFileHelper
                 br.ReadBytes(100);
                 shapes.Clear();
                 while (br.PeekChar() != -1)
-                {  
+                {
                     List<Point> points = new List<Point>();
-                    List<Point> newPoints = new List<Point>();
                     br.ReadBytes(44);
                     int Numparts = br.ReadInt32();
                     int Numpoints = br.ReadInt32();
+                    int[] a = new int[Numparts];
                     for (int i = 0; i < Numparts; i++)
                     {
-                       br.ReadInt32();
+                        a[i] = br.ReadInt32();
                     }
                     for (int i = 0; i < Numpoints; i++)
                     {
                         double X = br.ReadDouble();
-                        double Y = br.ReadDouble();
+                        double Y = -br.ReadDouble();
                         Point point = new Point(X, Y);
                         points.Add(point);
                     }
-                    foreach (var p in points)
+                    for (int i = 0; i < Numparts; i++)
                     {
-                        Point point = p as Point;
-                        if (point != null)
+                        List<Point> newPoints = new List<Point>();
+                        int startpoint, endpoint;
+                        if (i != Numparts - 1)
                         {
-                            newPoints.Add(point);
+                            startpoint = (int)a[i];
+                            endpoint = (int)a[i + 1];
                         }
+                        else
+                        {
+                            startpoint = (int)a[i];
+                            endpoint = Numpoints;
+                        }
+                        for (int k = 0, j = startpoint; j < endpoint; j++, k++)
+                        {
+                            newPoints.Add(points[j]);
+                        }
+                        Polyline polyline = new Polyline(newPoints);
+                        polyline.points = points;
+                        shapes.Add(polyline);
                     }
-                    Polyline polyline = new Polyline(newPoints);
-                    polyline.points = points;
-                    shapes.Add(polyline);
                 }
                 br.Close();
-            }            
+            }
             return shapes;
         }
 
@@ -116,34 +127,45 @@ namespace ShapeFileHelper
                 br.ReadBytes(100);
                 shapes.Clear();
                 while (br.PeekChar() != -1)
-                {                  
+                {
                     List<Point> points = new List<Point>();
-                    List<Point> newPoints = new List<Point>();
                     br.ReadBytes(44);
                     int Numparts = br.ReadInt32();
                     int Numpoints = br.ReadInt32();
+                    int[] a = new int[Numparts];
                     for (int i = 0; i < Numparts; i++)
                     {
-                        br.ReadInt32();
+                        a[i] = br.ReadInt32();
                     }
                     for (int i = 0; i < Numpoints; i++)
                     {
                         double X = br.ReadDouble();
-                        double Y = - br.ReadDouble();
+                        double Y = -br.ReadDouble();
                         Point point = new Point(X, Y);
                         points.Add(point);
                     }
-                    foreach (var p in points)
+                    for (int i = 0; i < Numparts; i++)
                     {
-                        Point point = p as Point;
-                        if (point != null)
+                        List<Point> newPoints = new List<Point>();
+                        int startpoint, endpoint;
+                        if (i != Numparts - 1)
                         {
-                            newPoints.Add(point);
+                            startpoint = (int)a[i];
+                            endpoint = (int)a[i + 1];
                         }
+                        else
+                        {
+                            startpoint = (int)a[i];
+                            endpoint = Numpoints;
+                        }
+                        for (int k = 0, j = startpoint; j < endpoint; j++, k++)
+                        {
+                            newPoints.Add(points[j]);
+                        }
+                        Polygon polygon = new Polygon(newPoints);
+                        polygon.points = newPoints;
+                        shapes.Add(polygon);
                     }
-                    Polygon polygon = new Polygon(newPoints);
-                    polygon.points = points;
-                    shapes.Add(polygon);
                 }
                 br.Close();
             }
