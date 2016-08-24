@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 
 namespace ShapeFileHelper {
+
     public class Polygon : Shape {
+
         public Polygon(List<Point> points) {
             this.points = points;
             this.shapeType = ShapeType.Polygon;

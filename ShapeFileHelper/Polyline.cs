@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 
 namespace ShapeFileHelper {
+
     public class Polyline : Shape {
+
         public Polyline(List<Point> points) {
             this.points = points;
             this.shapeType = ShapeType.Polyline;

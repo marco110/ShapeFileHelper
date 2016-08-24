@@ -4,7 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace ShapeFileHelper {
+
     public class MainFile {
+
         List<Shape> shapes = new List<Shape>();
 
         public string FilePath { get; set; }

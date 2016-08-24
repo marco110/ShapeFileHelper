@@ -1,6 +1,8 @@
 ﻿
 namespace ShapeFileHelper {
+
     public class IndexFile {
+
         public int FileLength { get; set; }
 
         public string FileName { get; set; }

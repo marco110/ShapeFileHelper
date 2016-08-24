@@ -1,5 +1,7 @@
 ﻿namespace ShapeFileHelper {
+
     public class BoundingBox {
+
         public double XMin { get; set; }
 
         public double XMax { get; set; }

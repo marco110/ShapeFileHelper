@@ -3,7 +3,9 @@ using System.Drawing;
 using System.Collections.Generic;
 
 namespace ShapeFileHelper {
+
     public class Painter {
+
         public Style Style;
         public BitmapCanvas Canvas;
 

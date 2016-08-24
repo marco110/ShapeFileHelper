@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ShapeFileHelper {
+
     public enum ShapeType {
+
         NullShape = 0,
         Point = 1,
         Polyline = 3,

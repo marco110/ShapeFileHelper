@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 namespace ShapeFileHelper {
+
     public class BitmapCanvas : Canvas {
+
         public Bitmap Bitmap { get; set; }
 
         public BitmapCanvas(int width, int height) {

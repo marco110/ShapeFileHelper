@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Threading.Tasks;
 
 namespace ShapeFileHelper {
+
     public static class CoordinateConvertor {
+
         public static List<Point> ConvertPointsToScreen(List<Point> points, BitmapCanvas canvas) {
             List<Point> newPoints = new List<Point>();
             BoundingBox boundingBox = Point.GetPointsBoundingBox(points);

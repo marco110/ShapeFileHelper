@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 namespace ShapeFileHelper {
+
     public class Point : Shape {
 
         public double X { get; set; }

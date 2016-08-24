@@ -1,7 +1,9 @@
 ﻿using System.Drawing;
 
 namespace ShapeFileHelper {
+
     public class Style {
+
         public int PenWidth { get; set; }
 
         public Color PenColor { get; set; }

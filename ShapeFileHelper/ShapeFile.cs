@@ -3,7 +3,9 @@ using System.IO;
 using System.Collections.Generic;
 
 namespace ShapeFileHelper {
+
     public abstract class ShapeFile {
+
         public string FileLength { get; set; }
 
         public string FileName { get; set; }

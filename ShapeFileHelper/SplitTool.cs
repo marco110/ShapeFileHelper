@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 
 namespace ShapeFileHelper {
+
     public static class SplitTool {
+
         public static List<List<Shape>> SplitShapes(BoundingBox boundingBox, List<Shape> shapes, Canvas canvas) {
             List<List<Shape>> newShapes = new List<List<Shape>>();
             List<Shape> outBox = new List<Shape>();
