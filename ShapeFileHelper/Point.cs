@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-namespace ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper {
 
     public class Point : Shape {
 

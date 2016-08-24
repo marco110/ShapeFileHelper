@@ -1,4 +1,4 @@
-﻿namespace ShapeFileHelper {
+﻿namespace Thinkgeo.ShapeFileHelper {
 
     public class BoundingBox {
 

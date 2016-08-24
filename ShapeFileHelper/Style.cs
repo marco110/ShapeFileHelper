@@ -1,15 +1,15 @@
 ﻿using System.Drawing;
 
-namespace ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper {
 
     public class Style {
 
-        public int PenWidth { get; set; }
+        public int LineWidth { get; set; }
 
         public Color PenColor { get; set; }
 
         public Style(int penWidth, Color penColor) {
-            this.PenWidth = penWidth;
+            this.LineWidth = penWidth;
             this.PenColor = penColor;
         }
     }

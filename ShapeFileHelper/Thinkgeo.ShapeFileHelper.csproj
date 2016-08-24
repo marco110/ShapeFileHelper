@@ -7,8 +7,8 @@
     <ProjectGuid>{553BB208-CB4E-475C-89F7-1E2C074A1C42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShapeFileHelper</RootNamespace>
-    <AssemblyName>ShapeFileHelper</AssemblyName>
+    <RootNamespace>Thinkgeo.ShapeFileHelper</RootNamespace>
+    <AssemblyName>Thinkgeo.ShapeFileHelper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

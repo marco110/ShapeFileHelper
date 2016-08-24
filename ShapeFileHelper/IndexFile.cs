@@ -1,5 +1,5 @@
 ﻿
-namespace ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper {
 
     public class IndexFile {
 

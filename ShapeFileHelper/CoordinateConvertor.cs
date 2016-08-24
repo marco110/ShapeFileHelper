@@ -5,7 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 
-namespace ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper {
 
     public static class CoordinateConvertor {
 

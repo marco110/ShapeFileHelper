@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Collections.Generic;
 
-namespace ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper {
 
     public class Painter {
 
@@ -23,14 +23,14 @@ namespace ShapeFileHelper {
             Rectangle = new Rectangle(Math.Min((int)boundingBox.XMin, (int)boundingBox.XMax), Math.Min((int)boundingBox.YMin, (int)boundingBox.YMax),
                 Math.Max((int)boundingBox.XMin, (int)boundingBox.XMax) - Math.Min((int)boundingBox.XMin, (int)boundingBox.XMax),
                 Math.Max((int)boundingBox.YMin, (int)boundingBox.YMax) - Math.Min((int)boundingBox.YMin, (int)boundingBox.YMax));
-            g.DrawRectangle(new Pen(Style.PenColor, 1), Rectangle);
+            g.DrawRectangle(new Pen(Style.PenColor, Style.LineWidth), Rectangle);
         }
 
         public void DrawPoints(List<Point> points) {
             var bitmap = Canvas.GetBitmap();
             foreach (Point p in points) {
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawEllipse(new Pen(Style.PenColor, Style.PenWidth), (float)p.X, (float)p.Y, 2, 2);
+                g.DrawEllipse(new Pen(Style.PenColor, Style.LineWidth), (float)p.X, (float)p.Y, 2, 2);
             }
         }
 
@@ -44,7 +44,7 @@ namespace ShapeFileHelper {
                     newPoint[j].Y = (float)(polylines[i].points[j].Y);
                 }
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawLines(new Pen(Style.PenColor, Style.PenWidth), newPoint);
+                g.DrawLines(new Pen(Style.PenColor, Style.LineWidth), newPoint);
             }
         }
 
@@ -58,7 +58,7 @@ namespace ShapeFileHelper {
                     newPoint[j].Y = (float)(polygons[i].points[j].Y);
                 }
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawPolygon(new Pen(Style.PenColor, Style.PenWidth), newPoint);
+                g.DrawPolygon(new Pen(Style.PenColor, Style.LineWidth), newPoint);
             }
         }
 

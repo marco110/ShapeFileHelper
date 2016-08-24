@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper {
 
     public static class SplitTool {
 
