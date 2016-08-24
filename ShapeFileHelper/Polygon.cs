@@ -8,7 +8,7 @@ namespace ShapeFileHelper
         public Polygon(List<Point>points)
         {
             this.points = points;
-            this.ShapeType = ShapeType.Polygon;
+            this.shapeType = ShapeType.Polygon;
         }
 
         public static BoundingBox GetPolygonsBoundingBox(List<Polygon> polygons)

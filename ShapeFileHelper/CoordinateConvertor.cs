@@ -71,7 +71,7 @@ namespace ShapeFileHelper
         public static List<Shape> ConvertShapesToScreen(List<Shape> shapes, BitmapCanvas canvas)
         {
             List<Shape> newShapes = new List<Shape>();
-            switch (shapes[0].ShapeType)
+            switch (shapes[0].shapeType)
             {
                 case ShapeType.Point:
                     List<Point> points = new List<Point>();

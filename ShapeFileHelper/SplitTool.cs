@@ -10,7 +10,7 @@ namespace ShapeFileHelper
             List<List<Shape>> newShapes = new List<List<Shape>>();
             if (shapes.Count != 0)
             {
-                switch (shapes[0].ShapeType)
+                switch (shapes[0].shapeType)
                 {
                     case ShapeType.Point:
                         List<Point> points = new List<Point>();

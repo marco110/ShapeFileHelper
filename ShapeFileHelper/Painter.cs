@@ -34,7 +34,7 @@ namespace ShapeFileHelper
             foreach (Point p in points)
             {
                 Graphics g = Graphics.FromImage(bitmap);
-                g.DrawEllipse(new Pen(Style.PenColor, Style.PenWidth), (float)p.X, (float)p.Y, 3, 3);                
+                g.DrawEllipse(new Pen(Style.PenColor, Style.PenWidth), (float)p.X, (float)p.Y, 2, 2);                
             }
         }
 
@@ -76,7 +76,7 @@ namespace ShapeFileHelper
         {
             if (shapes.Count != 0)
             {
-                switch (shapes[0].ShapeType)
+                switch (shapes[0].shapeType)
                 {
                     case ShapeType.Point:
                         List<Point> points = new List<Point>();

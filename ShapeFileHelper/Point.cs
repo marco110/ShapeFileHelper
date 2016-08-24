@@ -12,7 +12,7 @@ namespace ShapeFileHelper
         {
             this.X = X;
             this.Y = Y;
-            this.ShapeType = ShapeType.Point;
+            this.shapeType = ShapeType.Point;
         }
 
         public static BoundingBox GetPointsBoundingBox(List<Point> points)

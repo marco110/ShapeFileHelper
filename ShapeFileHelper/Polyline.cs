@@ -8,7 +8,7 @@ namespace ShapeFileHelper
         public Polyline(List<Point> points)
         {
             this.points = points;
-            this.ShapeType = ShapeType.Polyline;
+            this.shapeType = ShapeType.Polyline;
         }
 
         public static BoundingBox GetPolylinesBoundingBox(List<Polyline> polylines)
