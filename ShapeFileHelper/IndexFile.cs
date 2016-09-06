@@ -1,7 +1,9 @@
 ﻿
-namespace Thinkgeo.ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper
+{
 
-    public class IndexFile {
+    public class IndexFile
+    {
 
         public int FileLength { get; set; }
 
@@ -9,7 +11,8 @@ namespace Thinkgeo.ShapeFileHelper {
 
         public string FilePath { get; set; }
 
-        public IndexFile(string fileName) {
+        public IndexFile(string fileName)
+        {
             this.FileName = fileName;
         }
 

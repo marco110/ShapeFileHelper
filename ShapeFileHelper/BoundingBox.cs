@@ -1,20 +1,52 @@
-﻿namespace Thinkgeo.ShapeFileHelper {
+﻿namespace Thinkgeo.ShapeFileHelper
+{
+    public class BoundingBox : PolygonShape
+    {
+        private double xMin;
+        private double yMin;
+        private double xMax;
+        private double yMax;
 
-    public class BoundingBox {
+        public double XMin
+        {
+            get { return xMin; }
+            set { xMin = value; }
+        }
 
-        public double XMin { get; set; }
+        public double YMin
+        {
+            get { return yMin; }
+            set { yMin = value; }
+        }
 
-        public double XMax { get; set; }
+        public double XMax
+        {
+            get { return xMax; }
+            set { xMax = value; }
+        }
 
-        public double YMin { get; set; }
+        public double YMax
+        {
+            get { return yMax; }
+            set { yMax = value; }
+        }
 
-        public double YMax { get; set; }
+        public double Width
+        {
+            get { return xMax - xMin; }
+        }
 
-        public BoundingBox(double xMin, double xMax, double yMin, double yMax) {
-            this.XMin = xMin;
-            this.XMax = xMax;
-            this.YMin = yMin;
-            this.YMax = yMax;
+        public double Height
+        {
+            get { return yMax - yMin; }
+        }
+
+        public BoundingBox(double xMin, double yMin, double xMax, double yMax)
+        {
+            this.xMin = xMin;
+            this.xMax = xMax;
+            this.yMin = yMin;
+            this.yMax = yMax;
         }
     }
 }

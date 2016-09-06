@@ -3,55 +3,76 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Thinkgeo.ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper
+{
 
-    public class MainFile {
-
-        List<Shape> shapes = new List<Shape>();
-
+    public class MainFile
+    {
         public string FilePath { get; set; }
 
         public string FileName { get; set; }
 
         public int FileLength { get; set; }
 
-        public MainFile(string fileName) {
+        public MainFile(string fileName)
+        {
             this.FileName = fileName;
         }
 
-        public List<Shape> ReadShapes() {
-            using (FileStream file = new FileStream(FileName, FileMode.Open)) {
+        public BoundingBox GetBoundingBox()
+        {
+            using (FileStream file = new FileStream(FileName, FileMode.Open))
+            {
+                BinaryReader br = new BinaryReader(file);
+                br.ReadBytes(36);
+                double xMin = br.ReadDouble();
+                double yMin = br.ReadDouble();
+                double xMax = br.ReadDouble();
+                double yMax = br.ReadDouble();
+                br.Close();
+                return new BoundingBox(xMin, yMin, xMax, yMax);
+            }
+        }
+
+        public List<Shape> ReadShapes()
+        {
+            List<Shape> shapes = new List<Shape>();
+            using (FileStream file = new FileStream(FileName, FileMode.Open))
+            {
                 BinaryReader br = new BinaryReader(file);
                 br.ReadBytes(32);
                 int shapeType = br.ReadInt32();
                 br.Close();
-                switch (shapeType) {
+                switch (shapeType)
+                {
                     case 1:
-                        ReadPoints();
+                        shapes = ReadPoints();
                         break;
                     case 3:
-                        ReadPolylines();
+                        shapes = ReadPolylines();
                         break;
                     case 5:
-                        ReadPolygons();
+                        shapes = ReadPolygons();
                         break;
                 }
             }
             return shapes;
         }
 
-        public List<Shape> ReadPoints() {
-            shapes.Clear();
-            using (FileStream file = new FileStream(FileName, FileMode.Open)) {
+        public List<Shape> ReadPoints()
+        {
+            List<Shape> shapes = new List<Shape>();
+            using (FileStream file = new FileStream(FileName, FileMode.Open))
+            {
                 BinaryReader br = new BinaryReader(file);
                 br.ReadBytes(100);
-                shapes.Clear();
-                while (br.PeekChar() != -1) {
+                while (br.PeekChar() != -1)
+                {
                     br.ReadBytes(8);
                     br.ReadInt32();
                     double X = br.ReadDouble();
                     double Y = br.ReadDouble();
-                    Point point = new Point(X, Y);
+                    PointShape point = new PointShape(X, Y);
                     shapes.Add(point);
                 }
                 br.Close();
@@ -59,42 +80,49 @@ namespace Thinkgeo.ShapeFileHelper {
             return shapes;
         }
 
-        public List<Shape> ReadPolylines() {
-            using (FileStream file = new FileStream(FileName, FileMode.Open)) {
+        public List<Shape> ReadPolylines()
+        {
+            List<Shape> shapes = new List<Shape>();
+            using (FileStream file = new FileStream(FileName, FileMode.Open))
+            {
                 BinaryReader br = new BinaryReader(file);
                 br.ReadBytes(100);
-                shapes.Clear();
-                while (br.PeekChar() != -1) {
-                    List<Point> points = new List<Point>();
+                while (br.PeekChar() != -1)
+                {
+                    List<PointShape> points = new List<PointShape>();
                     br.ReadBytes(44);
                     int numParts = br.ReadInt32();
                     int numPoints = br.ReadInt32();
                     int[] newNumParts = new int[numParts];
-                    for (int i = 0; i < numParts; i++) {
+                    for (int i = 0; i < numParts; i++)
+                    {
                         newNumParts[i] = br.ReadInt32();
                     }
-                    for (int i = 0; i < numPoints; i++) {
+                    for (int i = 0; i < numPoints; i++)
+                    {
                         double X = br.ReadDouble();
-                        double Y = -br.ReadDouble();
-                        Point point = new Point(X, Y);
+                        double Y = br.ReadDouble();
+                        PointShape point = new PointShape(X, Y);
                         points.Add(point);
                     }
-                    for (int i = 0; i < numParts; i++) {
-                        List<Point> newPoints = new List<Point>();
-                        int startPoint, endPoint;
-                        if (i != numParts - 1) {
-                            startPoint = (int)newNumParts[i];
-                            endPoint = (int)newNumParts[i + 1];
+                    for (int i = 0; i < numParts; i++)
+                    {
+                        PolylineShape polyline = new PolylineShape();
+                        int startpoint, endpoint;
+                        if (i != numParts - 1)
+                        {
+                            startpoint = (int)newNumParts[i];
+                            endpoint = (int)newNumParts[i + 1];
                         }
-                        else {
-                            startPoint = (int)newNumParts[i];
-                            endPoint = numPoints;
+                        else
+                        {
+                            startpoint = (int)newNumParts[i];
+                            endpoint = numPoints;
                         }
-                        for (int k = 0, j = startPoint; j < endPoint; j++, k++) {
-                            newPoints.Add(points[j]);
+                        for (int k = 0, j = startpoint; j < endpoint; j++, k++)
+                        {
+                            polyline.Points.Add(points[j]);
                         }
-                        Polyline polyline = new Polyline(newPoints);
-                        polyline.points = newPoints;
                         shapes.Add(polyline);
                     }
                 }
@@ -103,42 +131,50 @@ namespace Thinkgeo.ShapeFileHelper {
             return shapes;
         }
 
-        public List<Shape> ReadPolygons() {
-            using (FileStream file = new FileStream(FileName, FileMode.Open)) {
+        public List<Shape> ReadPolygons()
+        {
+            List<Shape> shapes = new List<Shape>();
+            using (FileStream file = new FileStream(FileName, FileMode.Open))
+            {
                 BinaryReader br = new BinaryReader(file);
                 br.ReadBytes(100);
-                shapes.Clear();
-                while (br.PeekChar() != -1) {
-                    List<Point> points = new List<Point>();
+                while (br.PeekChar() != -1)
+                {
+                    List<PointShape> points = new List<PointShape>();
                     br.ReadBytes(44);
                     int numParts = br.ReadInt32();
                     int numPoints = br.ReadInt32();
                     int[] newNumParts = new int[numParts];
-                    for (int i = 0; i < numParts; i++) {
+                    for (int i = 0; i < numParts; i++)
+                    {
                         newNumParts[i] = br.ReadInt32();
                     }
-                    for (int i = 0; i < numPoints; i++) {
+                    for (int i = 0; i < numPoints; i++)
+                    {
                         double X = br.ReadDouble();
-                        double Y = -br.ReadDouble();
-                        Point point = new Point(X, Y);
+                        double Y = br.ReadDouble();
+                        PointShape point = new PointShape(X, Y);
                         points.Add(point);
                     }
-                    for (int i = 0; i < numParts; i++) {
-                        List<Point> newPoints = new List<Point>();
+
+                    for (int i = 0; i < numParts; i++)
+                    {
+                        PolygonShape polygon = new PolygonShape();
                         int startpoint, endpoint;
-                        if (i != numParts - 1) {
+                        if (i != numParts - 1)
+                        {
                             startpoint = (int)newNumParts[i];
                             endpoint = (int)newNumParts[i + 1];
                         }
-                        else {
+                        else
+                        {
                             startpoint = (int)newNumParts[i];
                             endpoint = numPoints;
                         }
-                        for (int k = 0, j = startpoint; j < endpoint; j++, k++) {
-                            newPoints.Add(points[j]);
+                        for (int k = 0, j = startpoint; j < endpoint; j++, k++)
+                        {
+                            polygon.Points.Add(points[j]);
                         }
-                        Polygon polygon = new Polygon(newPoints);
-                        polygon.points = newPoints;
                         shapes.Add(polygon);
                     }
                 }

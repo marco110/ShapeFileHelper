@@ -2,9 +2,11 @@
 using System.IO;
 using System.Collections.Generic;
 
-namespace Thinkgeo.ShapeFileHelper {
+namespace Thinkgeo.ShapeFileHelper
+{
 
-    public abstract class ShapeFile {
+    public abstract class ShapeFile
+    {
 
         public string FileLength { get; set; }
 
@@ -12,7 +14,8 @@ namespace Thinkgeo.ShapeFileHelper {
 
         public string FilePath { get; set; }
 
-        public ShapeFile(string filePath) {
+        public ShapeFile(string filePath)
+        {
             this.FilePath = filePath;
         }
 
