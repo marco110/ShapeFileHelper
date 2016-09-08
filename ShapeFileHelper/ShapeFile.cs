@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
 
     public abstract class ShapeFile

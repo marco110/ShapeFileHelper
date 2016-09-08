@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-namespace Thinkgeo.ShapeFileHelper
+
+namespace ShapeFileHelper
 {
 
     public static class SplitTool
@@ -13,7 +14,7 @@ namespace Thinkgeo.ShapeFileHelper
             List<List<Shape>> newShapes = new List<List<Shape>>();
             List<Shape> outBox = new List<Shape>();
             List<Shape> inBox = new List<Shape>();
-            var groups = shapes.GroupBy(s => s.GetShapeType);
+            var groups = shapes.GroupBy(s => s.ShapeType);
             foreach (var group in groups)
             {
                 switch (group.Key)

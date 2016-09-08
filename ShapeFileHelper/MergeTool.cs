@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
 
     public static class MergeTool
     {
 
-        public static void Merge(string filePath1, string filePath2) { }
+        public static void MergeFile(string filePath1, string filePath2) { }
     }
 }

@@ -5,12 +5,11 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
 
     public static class CoordinateConvertor
     {
-
         public static List<Point> ToScreenCoordinates(IEnumerable<PointShape> points, int width, int height, BoundingBox boundingBox)
         {
             List<Point> screenPoints = new List<Point>();
@@ -22,14 +21,6 @@ namespace Thinkgeo.ShapeFileHelper
                 screenPoints.Add(point);
             }
             return screenPoints;
-        }
-
-        public static PointShape ToShapeFileCoordinates(Point point, int width, int height, BoundingBox boundingBox)
-        {
-            double X = boundingBox.XMin + point.X * boundingBox.Width / width;
-            double Y = boundingBox.YMax - boundingBox.Height * point.Y / height;
-            PointShape newPoint = new PointShape(X, Y);
-            return newPoint;
         }
     }
 }

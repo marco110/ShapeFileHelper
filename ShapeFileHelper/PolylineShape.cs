@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
     public class PolylineShape : Shape
     {
@@ -17,7 +17,7 @@ namespace Thinkgeo.ShapeFileHelper
             this.points = new List<PointShape>();
         }
 
-        public override ShapeType GetShapeType
+        public override ShapeType ShapeType
         {
             get { return ShapeType.Polyline; }
         }

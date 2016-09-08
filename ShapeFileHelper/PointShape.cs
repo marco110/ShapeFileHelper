@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-namespace Thinkgeo.ShapeFileHelper
+
+namespace ShapeFileHelper
 {
     public class PointShape : Shape
     {
@@ -25,7 +26,7 @@ namespace Thinkgeo.ShapeFileHelper
             this.y = y;
         }
 
-        public override ShapeType GetShapeType
+        public override ShapeType ShapeType
         {
             get
             {

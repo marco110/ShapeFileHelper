@@ -1,4 +1,4 @@
-﻿namespace Thinkgeo.ShapeFileHelper
+﻿namespace ShapeFileHelper
 {
     public class BoundingBox : PolygonShape
     {

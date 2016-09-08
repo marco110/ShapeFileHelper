@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Drawing;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
 
     public class BitmapCanvas : Canvas
@@ -42,18 +42,6 @@ namespace Thinkgeo.ShapeFileHelper
             }
         }
 
-        public override void DrawBoundingBox(Point startpoint, Point endpoint, Style style)
-        {
-            Rectangle rectangle = new Rectangle(startpoint.X, startpoint.Y, endpoint.X - startpoint.X, endpoint.Y - startpoint.Y);
-            g.DrawRectangle(new Pen(style.PenColor, style.LineWidth), rectangle);
-        }
-
-        public override void DrawBoundingBox(BoundingBox boundingBox, Style style)
-        {
-            Rectangle rectangle = new Rectangle((int)boundingBox.XMin, (int)boundingBox.YMin, (int)boundingBox.Width, (int)boundingBox.Height);
-            g.DrawRectangle(new Pen(style.PenColor, style.LineWidth), rectangle);
-        }
-
         public override void DrawPolyline(PolylineShape polyline, Style style)
         {
             List<Point> screenPoints = CoordinateConvertor.ToScreenCoordinates(polyline.Points, this.Width, this.Height, this.BoundingBox);
@@ -68,7 +56,7 @@ namespace Thinkgeo.ShapeFileHelper
 
         public override void DrawShapes(IEnumerable<Shape> shapes, Style style)
         {
-            var groups = shapes.GroupBy(s => s.GetShapeType);
+            var groups = shapes.GroupBy(s => s.ShapeType);
             foreach (var group in groups)
             {
                 switch (group.Key)

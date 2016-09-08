@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Collections.Generic;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
     public abstract class Canvas
     {
@@ -27,10 +27,6 @@ namespace Thinkgeo.ShapeFileHelper
         public abstract void DrawPoint(PointShape point, Style style);
 
         public abstract void DrawPoints(IEnumerable<PointShape> points, Style style);
-
-        public abstract void DrawBoundingBox(Point startpoint, Point endpoint, Style style);
-
-        public abstract void DrawBoundingBox(BoundingBox boundingBox, Style style);
 
         public abstract void DrawPolyline(PolylineShape polyline, Style style);
 

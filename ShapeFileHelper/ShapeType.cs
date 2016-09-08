@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
     public enum ShapeType
     {

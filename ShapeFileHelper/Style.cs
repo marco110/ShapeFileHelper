@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
 
     public class Style

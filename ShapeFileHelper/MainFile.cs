@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Thinkgeo.ShapeFileHelper
+namespace ShapeFileHelper
 {
 
     public class MainFile
@@ -46,30 +46,41 @@ namespace Thinkgeo.ShapeFileHelper
                 switch (shapeType)
                 {
                     case 1:
-                        shapes = ReadPoints();
+                        var pointShapes = ReadPoints();
+                        foreach (var point in pointShapes)
+                        {
+                            shapes.Add(point);
+                        }
                         break;
                     case 3:
-                        shapes = ReadPolylines();
+                        var polylineShapes = ReadPolylines();
+                        foreach (var polyline in polylineShapes)
+                        {
+                            shapes.Add(polyline);
+                        }
                         break;
                     case 5:
-                        shapes = ReadPolygons();
+                        var polygonShapes = ReadPolygons();
+                        foreach (var polygon in polygonShapes)
+                        {
+                            shapes.Add(polygon);
+                        }
                         break;
                 }
             }
             return shapes;
         }
 
-        public List<Shape> ReadPoints()
+        public List<PointShape> ReadPoints()
         {
-            List<Shape> shapes = new List<Shape>();
+            List<PointShape> shapes = new List<PointShape>();
             using (FileStream file = new FileStream(FileName, FileMode.Open))
             {
                 BinaryReader br = new BinaryReader(file);
                 br.ReadBytes(100);
                 while (br.PeekChar() != -1)
                 {
-                    br.ReadBytes(8);
-                    br.ReadInt32();
+                    br.ReadBytes(12);
                     double X = br.ReadDouble();
                     double Y = br.ReadDouble();
                     PointShape point = new PointShape(X, Y);
@@ -80,9 +91,9 @@ namespace Thinkgeo.ShapeFileHelper
             return shapes;
         }
 
-        public List<Shape> ReadPolylines()
+        public List<PolylineShape> ReadPolylines()
         {
-            List<Shape> shapes = new List<Shape>();
+            List<PolylineShape> shapes = new List<PolylineShape>();
             using (FileStream file = new FileStream(FileName, FileMode.Open))
             {
                 BinaryReader br = new BinaryReader(file);
@@ -119,7 +130,7 @@ namespace Thinkgeo.ShapeFileHelper
                             startpoint = (int)newNumParts[i];
                             endpoint = numPoints;
                         }
-                        for (int k = 0, j = startpoint; j < endpoint; j++, k++)
+                        for (int j = startpoint; j < endpoint; j++)
                         {
                             polyline.Points.Add(points[j]);
                         }
@@ -131,9 +142,9 @@ namespace Thinkgeo.ShapeFileHelper
             return shapes;
         }
 
-        public List<Shape> ReadPolygons()
+        public List<PolygonShape> ReadPolygons()
         {
-            List<Shape> shapes = new List<Shape>();
+            List<PolygonShape> shapes = new List<PolygonShape>();
             using (FileStream file = new FileStream(FileName, FileMode.Open))
             {
                 BinaryReader br = new BinaryReader(file);
@@ -171,7 +182,7 @@ namespace Thinkgeo.ShapeFileHelper
                             startpoint = (int)newNumParts[i];
                             endpoint = numPoints;
                         }
-                        for (int k = 0, j = startpoint; j < endpoint; j++, k++)
+                        for (int j = startpoint; j < endpoint; j++)
                         {
                             polygon.Points.Add(points[j]);
                         }
